@@ -10,7 +10,9 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'x-api-key', 'anthropic-version']
 }));
 
-app.use(express.json());
+// Increase payload limit to 50MB
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 app.options('/claude', cors());
 
